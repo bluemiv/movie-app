@@ -23,45 +23,49 @@ class App extends Component {
   // render: componentWillMount() -> render() -> componentDidMount()
   // Update: componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()
 
-  state = {
-  }
+  state = {}
 
   componentWillMount() {
     // console.log("Life cycle 1: Will Mount.")
   }
   
+
   componentDidMount() {
-    // console.log("Life cycle 3: Did Mount.")
-    setTimeout(() => { // function은 오래된 방식, () => : 최신방식
-      // console.log("Hello!")
-      this.setState({
-        // Map을 이용한 데이터 생성할 예정
-        movies: [
-          {
-            title: "사바하",
-            poster: "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81616/81616_1000.jpg"
-          },
-          {
-            title: "증인",
-            poster: "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81581/81581_185.jpg"
-          },
-          {
-            title: "극한직업",
-            poster: "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81552/81552_1000.jpg"
-          },
-          {
-            title: "알리타",
-            poster: "https://cdn.clien.net/web/api/file/F01/7960316/c44f2d7231bf3.jpg"
-          },
-          {
-            title: "캡틴마블",
-            poster: "https://file2.nocutnews.co.kr/newsroom/image/2019/03/06/20190306032809346893_0_777_1113.jpg"
-          },
-        ]
-        // ...this.state.movies, // 이전 목록은 놔두고, 데이터 추가!
-      })
-    }, 3000)
+    console.log(fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating"))
   }
+
+  // componentDidMount() {
+  //   // console.log("Life cycle 3: Did Mount.")
+  //   setTimeout(() => { // function은 오래된 방식, () => : 최신방식
+  //     // console.log("Hello!")
+  //     this.setState({
+  //       // Map을 이용한 데이터 생성할 예정
+  //       movies: [
+  //         {
+  //           title: "사바하",
+  //           poster: "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81616/81616_1000.jpg"
+  //         },
+  //         {
+  //           title: "증인",
+  //           poster: "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81581/81581_185.jpg"
+  //         },
+  //         {
+  //           title: "극한직업",
+  //           poster: "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81552/81552_1000.jpg"
+  //         },
+  //         {
+  //           title: "알리타",
+  //           poster: "https://cdn.clien.net/web/api/file/F01/7960316/c44f2d7231bf3.jpg"
+  //         },
+  //         {
+  //           title: "캡틴마블",
+  //           poster: "https://file2.nocutnews.co.kr/newsroom/image/2019/03/06/20190306032809346893_0_777_1113.jpg"
+  //         },
+  //       ]
+  //       // ...this.state.movies, // 이전 목록은 놔두고, 데이터 추가!
+  //     })
+  //   }, 3000)
+  // }
 
   // 나의 기능과 리액트 자체 기능을 구분하기위해 언더스코어 사용하여 구분하면 좋음.
   _renderMovies = () => {
