@@ -1,37 +1,64 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react'; // class component
+import React from 'react'; // functional component
 import PropTypes from 'prop-types';
 import './Movie.css'; // css 파일 임포트
 
-class Movie extends Component {
+// // class component -> smart component
+// class Movie extends Component {
 
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired
-    }
+//     static propTypes = {
+//         title: PropTypes.string.isRequired,
+//         poster: PropTypes.string.isRequired
+//     }
 
-    render() {
-        console.log(this.props);
-        return(
-            <div>
-                <MoviePoster poster={this.props.poster}/>
-                <h1>{this.props.title}</h1>
-            </div>            
-        );
-    }
+//     render() {
+//         console.log(this.props);
+//         return(
+//             <div>
+//                 <MoviePoster poster={this.props.poster}/>
+//                 <h1>{this.props.title}</h1>
+//             </div>            
+//         );
+//     }
+// }
+
+// class MoviePoster extends Component {
+
+//     static propTypes = {
+//         poster: PropTypes.string.isRequired
+//     }
+
+//     render() {
+//         console.log(this.props);
+//         return (
+//             <img src={this.props.poster}/>
+//         );
+//     }
+// }
+
+
+
+// functinal component -> life cycle, function reder 등등 다 없음. 오직 return만 있음
+// dumps component
+function Movie({title, poster}) {
+    return (
+        <div>
+            <MoviePoster poster={poster}/>
+            <h1>{title}</h1>
+        </div>
+    )
 }
-
-class MoviePoster extends Component {
-
-    static propTypes = {
-        poster: PropTypes.string.isRequired
-    }
-
-    render() {
-        console.log(this.props);
-        return (
-            <img src={this.props.poster}/>
-        );
-    }
+function MoviePoster({poster}) {
+    return (
+        <img src={poster} alt="Movie Poster"/>
+    )
+}
+Movie.propTypes = {
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired
+}
+MoviePoster.propTypes = {
+    poster: PropTypes.string.isRequired
 }
 
 export default Movie;
