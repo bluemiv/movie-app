@@ -51,7 +51,7 @@ function Movie({title, poster, genres, synopsis}) {
                 <div className="Movie__Genres">
                     {genres.map((genre, index) => <MovieGenres genre={genre} key={index} />)}
                 </div>
-                <p claaName="Movie__Synopsis">
+                <p className="Movie__Synopsis">
                     {synopsis}
                 </p>
             </div>
@@ -79,7 +79,7 @@ MoviePoster.propTypes = {
     alt: PropTypes.string.isRequired
 }
 MovieGenres.propTypes = {
-    genres: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
 }
 export default Movie;
 

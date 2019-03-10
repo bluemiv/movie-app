@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   _callApi = () => {
-    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
+    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
     .then(response => response.json()) // 위 작업이 끝나면 실행. 성공하든 실패하든...
     .then(json => json.data.movies) // arrow function
     .catch(err => console.log(err)) // Error가 있으면 catch에서 실행
@@ -87,7 +87,7 @@ class App extends Component {
         console.log(movie)
         return <Movie
         title={movie.title_english}
-        poster={movie.small_cover_image}
+        poster={movie.medium_cover_image}
         genres={movie.genres}
         synopsis={movie.synopsis}
         key={movie.id}
