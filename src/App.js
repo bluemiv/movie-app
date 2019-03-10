@@ -31,9 +31,20 @@ class App extends Component {
   
 
   componentDidMount() {
-    fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
+    this._getMovies();
+  }
+
+  _getMovies = async () => { // async를 쓰지 않으면 await는 작동하지 않음.
+    const movies = await this._callApi() // 작업이 끝날때까지 아래 작업이 실행 안됨.
+    this.setState({
+      movies
+    })
+  }
+
+  _callApi = () => {
+    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
     .then(response => response.json()) // 위 작업이 끝나면 실행. 성공하든 실패하든...
-    .then(json => console.log(json))
+    .then(json => json.data.movies) // arrow function
     .catch(err => console.log(err)) // Error가 있으면 catch에서 실행
   }
 
@@ -73,7 +84,8 @@ class App extends Component {
   // 나의 기능과 리액트 자체 기능을 구분하기위해 언더스코어 사용하여 구분하면 좋음.
   _renderMovies = () => {
     const movies = this.state.movies.map((movie, index) => { // mapping!!
-        return <Movie title={movie.title} poster={movie.poster} key={index}/>  
+        return <Movie title={movie.title} poster={movie.large_cover_image} key={movie.id}
+        /* key값으로 component의 id를 사용하는 것은 느려서 좋지 않음. *//>  
     })
     return movies
   }
