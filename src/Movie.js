@@ -1,6 +1,7 @@
 // import React, { Component } from 'react'; // class component
 import React from 'react'; // functional component
 import PropTypes from 'prop-types';
+import LinesEllipsis from 'react-lines-ellipsis';
 import './Movie.css'; // css 파일 임포트
 
 // // class component -> smart component
@@ -43,7 +44,7 @@ import './Movie.css'; // css 파일 임포트
 function Movie({title, poster, genres, synopsis}) {
     return (
         <div className="Movie">
-            <div className="Movie__Columns">
+            <div className="Movie__Column">
                 <MoviePoster poster={poster} alt={title}/>
             </div>
             <div>
@@ -52,7 +53,13 @@ function Movie({title, poster, genres, synopsis}) {
                     {genres.map((genre, index) => <MovieGenres genre={genre} key={index} />)}
                 </div>
                 <p className="Movie__Synopsis">
-                    {synopsis}
+                <LinesEllipsis
+                    text={synopsis}
+                    maxLine='3'
+                    ellipsis=' (...)'
+                    trimRight
+                    baseOn='letters'
+                />
                 </p>
             </div>
         </div>
