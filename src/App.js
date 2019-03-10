@@ -31,7 +31,10 @@ class App extends Component {
   
 
   componentDidMount() {
-    console.log(fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating"))
+    fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
+    .then(response => response.json()) // 위 작업이 끝나면 실행. 성공하든 실패하든...
+    .then(json => console.log(json))
+    .catch(err => console.log(err)) // Error가 있으면 catch에서 실행
   }
 
   // componentDidMount() {
