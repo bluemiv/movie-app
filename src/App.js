@@ -84,7 +84,13 @@ class App extends Component {
   // 나의 기능과 리액트 자체 기능을 구분하기위해 언더스코어 사용하여 구분하면 좋음.
   _renderMovies = () => {
     const movies = this.state.movies.map((movie, index) => { // mapping!!
-        return <Movie title={movie.title} poster={movie.large_cover_image} key={movie.id}
+        console.log(movie)
+        return <Movie
+        title={movie.title_english}
+        poster={movie.small_cover_image}
+        genres={movie.genres}
+        synopsis={movie.synopsis}
+        key={movie.id}
         /* key값으로 component의 id를 사용하는 것은 느려서 좋지 않음. *//>  
     })
     return movies
